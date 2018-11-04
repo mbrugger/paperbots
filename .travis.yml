@@ -3,16 +3,21 @@ cache:
   - $HOME/.m2
   - client/node_modules
 
-matrix:
-  include:
-  - language: java
-    sudo: required
-    services:
-      - docker
-    script: cd server && mvn clean test
 
-  - language: nodejs
-    before_script:
-      - cd client && npm install
-    script:
-      - npm run test
+jobs:
+  include:
+    - stage: "Tests"
+      name: "Server Integration Tests"
+      language: java
+      sudo: required
+      services:
+        - docker
+      script: cd server && mvn clean test
+    - # stage name not required, will continue to use `test`
+      name: "Client Integration Tests"
+      language: nodejs
+      script: cd client && npm install && npm run test
+    - stage: "Deploy"
+      language: minimal
+      name: "Building and Deploying Docker Images"
+      script: docker/docker_build.sh

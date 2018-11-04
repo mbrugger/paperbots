@@ -1,0 +1,14 @@
+{
+	"reloadPassword": "RELOAD_PASSWORD",
+	"emailConfig": {
+		"host": "EMAIL_HOST",
+		"port": "EMAIL_PORT",
+		"email": "EMAIL_EMAIL",
+		"password": "EMAIL_PASSWORD"
+	},
+	"databaseConfig": {
+		"jdbcUrl": "DB_JDBC_URL",
+		"user": "DB_USER",
+		"password": "DB_PASSWORD"
+	}	
+}
