@@ -44,6 +44,7 @@ export class IndexPage implements EventListener {
 				<h1>Featured projects</h1>
 				<div class="pb-index-page-featured">
 				</div>
+				<center>Martin was here!</center>
 			</div>
 		`);
 
