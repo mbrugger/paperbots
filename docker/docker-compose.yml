@@ -1,0 +1,27 @@
+version: '3'
+services:
+  server:
+    image: mbrugger/paperbots:latest
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+    ports:
+      - 8001:8001
+    environment:
+      - RELOAD_PASSWORD=123
+      - EMAIL_HOST=smtp.example.com
+      - EMAIL_PORT=465
+      - EMAIL_EMAIL=test@example.com
+      - EMAIL_PASSWORD=1234
+      - DB_JDBC_URL=jdbc:mysql://db/paperbots
+      - DB_USER=root
+      - DB_PASSWORD=123
+  db:
+    image: mysql:5.7.23
+    environment:
+      - MYSQL_ROOT_PASSWORD=123
+      - MYSQL_DATABASE=paperbots
+  watchtower:
+    image: v2tec/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 60 --label-enable --debug
